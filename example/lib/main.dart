@@ -55,9 +55,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 print(value);
               },
               selectorConfig: SelectorConfig(
-                  selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-                  hasIcon: true,
-                  dropDownIcon: Icon(CupertinoIcons.chevron_down)),
+                selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                hasIcon: true,
+                dropDownIcon: Icon(CupertinoIcons.chevron_down),
+              ),
               ignoreBlank: false,
               autoValidateMode: AutovalidateMode.disabled,
               selectorTextStyle: TextStyle(color: Colors.black),
