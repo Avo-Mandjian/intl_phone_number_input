@@ -17,7 +17,6 @@ class SelectorButton extends StatelessWidget {
   final String? locale;
   final bool isEnabled;
   final bool isScrollControlled;
-
   final ValueChanged<Country?> onCountryChanged;
 
   const SelectorButton({
@@ -62,38 +61,78 @@ class SelectorButton extends StatelessWidget {
                 trailingSpace: selectorConfig.trailingSpace,
                 textStyle: selectorTextStyle,
               )
-        : MaterialButton(
-            key: Key(TestHelper.DropdownButtonKeyValue),
-            padding: EdgeInsets.zero,
-            minWidth: 0,
-            onPressed: countries.isNotEmpty && countries.length > 1 && isEnabled
-                ? () async {
-                    Country? selected;
-                    if (selectorConfig.selectorType ==
-                        PhoneInputSelectorType.BOTTOM_SHEET) {
-                      selected = await showCountrySelectorBottomSheet(
-                          context, countries);
-                    } else {
-                      selected =
-                          await showCountrySelectorDialog(context, countries);
-                    }
+        : Row(
+            children: [
+              MaterialButton(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                key: Key(TestHelper.DropdownButtonKeyValue),
+                padding: EdgeInsets.zero,
+                minWidth: 0,
+                onPressed:
+                    countries.isNotEmpty && countries.length > 1 && isEnabled
+                        ? () async {
+                            Country? selected;
+                            if (selectorConfig.selectorType ==
+                                PhoneInputSelectorType.BOTTOM_SHEET) {
+                              selected = await showCountrySelectorBottomSheet(
+                                  context, countries);
+                            } else {
+                              selected = await showCountrySelectorDialog(
+                                  context, countries);
+                            }
 
-                    if (selected != null) {
-                      onCountryChanged(selected);
-                    }
-                  }
-                : null,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Item(
-                country: country,
-                showFlag: selectorConfig.showFlags,
-                useEmoji: selectorConfig.useEmoji,
-                leadingPadding: selectorConfig.leadingPadding,
-                trailingSpace: selectorConfig.trailingSpace,
-                textStyle: selectorTextStyle,
+                            if (selected != null) {
+                              onCountryChanged(selected);
+                            }
+                          }
+                        : null,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: Item(
+                    country: country,
+                    showFlag: selectorConfig.showFlags,
+                    useEmoji: selectorConfig.useEmoji,
+                    leadingPadding: selectorConfig.leadingPadding,
+                    trailingSpace: selectorConfig.trailingSpace,
+                    textStyle: selectorTextStyle,
+                  ),
+                ),
               ),
-            ),
+              if (selectorConfig.hasIcon ?? false)
+                SizedBox(
+                  width: 24,
+                  height: 24,
+                  child: IconButton(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    padding: EdgeInsets.zero,
+                    onPressed: countries.isNotEmpty &&
+                            countries.length > 1 &&
+                            isEnabled
+                        ? () async {
+                            Country? selected;
+                            if (selectorConfig.selectorType ==
+                                PhoneInputSelectorType.BOTTOM_SHEET) {
+                              selected = await showCountrySelectorBottomSheet(
+                                  context, countries);
+                            } else {
+                              selected = await showCountrySelectorDialog(
+                                  context, countries);
+                            }
+
+                            if (selected != null) {
+                              onCountryChanged(selected);
+                            }
+                          }
+                        : null,
+                    icon: selectorConfig.dropDownIcon ??
+                        Icon(
+                          Icons.arrow_drop_down,
+                        ),
+                  ),
+                )
+            ],
           );
   }
 
