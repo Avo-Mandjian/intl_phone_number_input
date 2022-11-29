@@ -48,26 +48,46 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             InternationalPhoneNumberInput(
+              inputBorder: InputBorder.none,
+              autoFocusSearch: true,
+              autoValidateMode: AutovalidateMode.disabled,
+              selectorConfig: const SelectorConfig(
+                selectorType: PhoneInputSelectorType.DIALOG,
+                setSelectorButtonAsPrefixIcon: true,
+                leadingPadding: 15,
+                hasIcon: true,
+                dropDownIcon: Icon(
+                  CupertinoIcons.chevron_down,
+                  color: Colors.black,
+                  size: 12,
+                ),
+              ),
+              inputDecoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.zero,
+                  borderSide: BorderSide(
+                    color: Colors.red,
+                  ),
+                ),
+                hintText: 'Phone Number',
+              ),
+              searchBoxDecoration: InputDecoration(
+                fillColor: Colors.grey[100],
+                label: Text('Search'),
+              ),
               onInputChanged: (PhoneNumber number) {
                 print(number.phoneNumber);
               },
               onInputValidated: (bool value) {
                 print(value);
               },
-              selectorConfig: SelectorConfig(
-                selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-                hasIcon: true,
-                dropDownIcon: Icon(CupertinoIcons.chevron_down),
-              ),
               ignoreBlank: false,
-              autoValidateMode: AutovalidateMode.disabled,
               selectorTextStyle: TextStyle(color: Colors.black),
               initialValue: number,
               textFieldController: controller,
               formatInput: false,
               keyboardType:
                   TextInputType.numberWithOptions(signed: true, decimal: true),
-              inputBorder: OutlineInputBorder(),
               onSaved: (PhoneNumber number) {
                 print('On Saved: $number');
               },

@@ -62,6 +62,7 @@ class SelectorButton extends StatelessWidget {
                 textStyle: selectorTextStyle,
               )
         : Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               MaterialButton(
                 splashColor: Colors.transparent,
