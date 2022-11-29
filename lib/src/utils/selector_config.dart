@@ -11,6 +11,7 @@ typedef CountryComparator = int Function(Country, Country);
 class SelectorConfig {
   final bool? hasIcon;
   final Widget? dropDownIcon;
+  final double? leftPaddingOfIcon;
 
   /// [selectorType], for selector button type
   final PhoneInputSelectorType selectorType;
@@ -37,6 +38,7 @@ class SelectorConfig {
   final bool trailingSpace;
 
   const SelectorConfig({
+    this.leftPaddingOfIcon,
     this.hasIcon = false,
     this.dropDownIcon,
     this.selectorType = PhoneInputSelectorType.DROPDOWN,

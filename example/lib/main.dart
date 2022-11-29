@@ -55,6 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 selectorType: PhoneInputSelectorType.DIALOG,
                 setSelectorButtonAsPrefixIcon: true,
                 leadingPadding: 15,
+                leftPaddingOfIcon: 0,
                 hasIcon: true,
                 dropDownIcon: Icon(
                   CupertinoIcons.chevron_down,
